@@ -1,0 +1,7 @@
+PKGNAME libdemangle
+VERSION 1.0
+AUTHOR pancake ; pancake@nopcode.org
+
+ARG_WITHOUT WITH_GPL gpl do not build GPL code (binutils code) ;
+
+SUBDIRS ./config.mk ;
