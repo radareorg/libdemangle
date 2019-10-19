@@ -6203,9 +6203,9 @@ main (int argc, char *argv[])
 #include <emscripten.h>
 EMSCRIPTEN_KEEPALIVE
 char *cxx(const char *sym_bol) {
-	const char *symbol = "_Z29api_internal_launch_ipykernelP7_objectS0_S0_";
+	// const char *symbol = "_Z29api_internal_launch_ipykernelP7_objectS0_S0_";
 	// int options = DMGL_PARAMS | DMGL_ANSI | DMGL_TYPES;
         int options = DMGL_NO_OPTS | DMGL_PARAMS;
-	return cplus_demangle_v3 (symbol, options);
+	return cplus_demangle_v3 (sym_bol, options);
 }
 #endif
