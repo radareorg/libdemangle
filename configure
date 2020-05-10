@@ -18,7 +18,7 @@ control_c() {
   exit 1
 }
 trap control_c 2
-WITH_GPL=1
+LDMG_WITHGPL=1
 split_host() {
 S="$"
 while : ; do
@@ -104,12 +104,12 @@ done
 : ${INSTALL_PROGRAM_STRIP:=${INSTALL} -m 755 -s}
 : ${INSTALL_MAN:=${INSTALL} -m 444}
 : ${INSTALL_LIB:=${INSTALL} -m 755 -c}
- PKGNAME='libdemangle' ; VERSION='1.0' ; VERSION_MAJOR=1; VERSION_MINOR=0; VERSION_PATCH=0; VERSION_NUMBER=10000; AUTHOR_MAIL="pancake@nopcode.org" ; AUTHOR_NAME="pancake" ; AUTHOR="pancake <pancake@nopcode.org>" ;
+ PKGNAME='libdemangle' ; VERSION='0.1.0' ; VERSION_MAJOR=0; VERSION_MINOR=1; VERSION_PATCH=0; VERSION_NUMBER=00100; AUTHOR_MAIL="pancake@nopcode.org" ; AUTHOR_NAME="pancake" ; AUTHOR="pancake <pancake@nopcode.org>" ;
 }
 
 show_usage() {
 cat <<EOF2
-'configure' configures libdemangle-1.0 to adapt to many kinds of systems.
+'configure' configures libdemangle-0.1.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -165,7 +165,7 @@ take_environ() {
 }
 
 show_version() {
-echo "libdemangle-1.0 configuration script done with acr v1.9.0.
+echo "libdemangle-0.1.0 configuration script done with acr v1.9.0.
 The 'Free Software Foundation' message is only for autodetection.
 Originally written by pancake <nopcode.org>."
 exit 0
@@ -189,7 +189,7 @@ case $flag in
 	show_version ; ;;
 -r|--r|--report)
 echo "PKGNAME:   libdemangle"
-echo "VERSION:   1.0"
+echo "VERSION:   0.1.0"
 echo "PKG-CONFIG:  r_util"
 echo "FLAGS:     --without-gpl"
 	exit 0
@@ -237,7 +237,7 @@ echo "FLAGS:     --without-gpl"
 --mandir)
 	MANDIR="$value"; ;;
 
-"--without-gpl") WITH_GPL="0"; ;;
+"--without-gpl") LDMG_WITHGPL="0"; ;;
 *) if [ "$value" ]; then eval "`echo $flag2=$value`" ;
 else echo ; echo "WARNING: Unknown flag '$flag'." >&2 ; echo ; fi ;;
 esac
@@ -255,7 +255,7 @@ parse_options "$1"
 shift
 done
 
-ENVWORDS="MANDIR INFODIR LIBDIR INCLUDEDIR LOCALSTATEDIR SYSCONFDIR DATADIR DOCDIR LIBEXECDIR SBINDIR BINDIR EPREFIX PREFIX SPREFIX TARGET HOST BUILD INSTALL INSTALL_LIB INSTALL_MAN INSTALL_PROGRAM INSTALL_PROGRAM_STRIP INSTALL_DIR INSTALL_SCRIPT INSTALL_DATA HOST_OS HOST_CPU BUILD_OS BUILD_CPU TARGET_OS TARGET_CPU VERSION VERSION_MAJOR VERSION_MINOR VERSION_PATCH VERSION_NUMBER PKGNAME VPATH AUTHOR AUTHOR_NAME AUTHOR_MAIL WITH_GPL RUTIL_CFLAGS RUTIL_LDFLAGS HAVE_PKGCFG_R_UTIL"
+ENVWORDS="MANDIR INFODIR LIBDIR INCLUDEDIR LOCALSTATEDIR SYSCONFDIR DATADIR DOCDIR LIBEXECDIR SBINDIR BINDIR EPREFIX PREFIX SPREFIX TARGET HOST BUILD INSTALL INSTALL_LIB INSTALL_MAN INSTALL_PROGRAM INSTALL_PROGRAM_STRIP INSTALL_DIR INSTALL_SCRIPT INSTALL_DATA HOST_OS HOST_CPU BUILD_OS BUILD_CPU TARGET_OS TARGET_CPU VERSION VERSION_MAJOR VERSION_MINOR VERSION_PATCH VERSION_NUMBER PKGNAME VPATH AUTHOR AUTHOR_NAME AUTHOR_MAIL LDMG_WITHGPL RUTIL_CFLAGS RUTIL_LDFLAGS HAVE_PKGCFG_R_UTIL"
 
 create_environ
 
@@ -295,7 +295,7 @@ for A in ${ENVWORDS} ; do
 	SEDFLAGS="${SEDFLAGS}s,@${A}@,${VAR},g;"
 done
 SEDFLAGS="${SEDFLAGS}'"
-for A in ./config.mk  ; do # SUBDIRS
+for A in ./config.mk src/config.h  ; do # SUBDIRS
 if [ -f "${VPATH}/${A}.acr" ]; then
   SD_TARGET=${A}
  else

@@ -1,0 +1,7 @@
+#ifndef LDMG_CONFIG_H
+#define LDMG_CONFIG_H
+
+#define LDMG_VERSION "@VERSION@"
+#define LDMG_WITHGPL @LDMG_WITHGPL@
+
+#endif

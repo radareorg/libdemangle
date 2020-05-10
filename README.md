@@ -23,10 +23,6 @@ This code comes from radare2, but it's been extracted on purpose
 in order to provide a safe place with proper testsuite and tracking
 to make it easy and safe to use by other projects, like Frida.
 
-TODO
-----
-* Rename to ldmg - libdemangle in short, nicer for coding
-
 Licensing
 ---------
 

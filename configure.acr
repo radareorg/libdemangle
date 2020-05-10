@@ -1,9 +1,9 @@
 PKGNAME libdemangle
-VERSION 1.0
+VERSION 0.1.0
 AUTHOR pancake ; pancake@nopcode.org
 
-ARG_WITHOUT WITH_GPL gpl do not build GPL code (binutils code) ;
+ARG_WITHOUT LDMG_WITHGPL gpl do not build GPL code (binutils code) ;
 
 PKGCFG RUTIL_CFLAGS RUTIL_LDFLAGS r_util
 
-SUBDIRS ./config.mk ;
+SUBDIRS ./config.mk src/config.h ;

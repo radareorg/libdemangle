@@ -1,8 +1,8 @@
 /* radare - LGPL - Copyright 2012-2015 - pancake */
 
-#include <libdemangle.h>
+#include <ldmg.h>
 
-R_API char *r_bin_demangle_objc(const char *sym) {
+R_API char *ldmg_objc(const char *sym) {
 	char *ret = NULL;
 	char *clas = NULL;
 	char *name = NULL;

@@ -8,9 +8,9 @@ int main(int argc, const char **argv) {
 		eprintf ("Languages: cxx, swift, rust, java, objc\n");
 		return 1;
 	}
-	LdmgCall dt = ldmg_select (argv[1]);
-	if (dt) {
-		char *r = dt (argv[2]);
+	LdmgCall demangle = ldmg_byname (argv[1]);
+	if (demangle) {
+		char *r = demangle (argv[2]);
 		if (r) {
 			eprintf ("%s\n", r);
 			free (r);

@@ -7,7 +7,7 @@ LIBNAME=libldmg
 RR=..
 include deps.mk
 SRC=
-SRC+=api.c
+SRC+=ldmg.c
 SRC+=cxx.c
 SRC+=java.c
 #SRC+=main.c
