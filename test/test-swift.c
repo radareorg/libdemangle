@@ -1,5 +1,5 @@
 #include <r_cons.h>
-#include <libdemangle.h>
+#include <ldmg.h>
 
 typedef struct {
 	const char *sym;
@@ -118,7 +118,7 @@ int test_swift_main(int argc, char **argv) {
 	int rc = 0;
 	char *ret;
 	if (argc > 1) {
-		ret = libdemangle_swift (argv[1], 0);
+		ret = ldmg_swift (argv[1]);
 		if (ret) {
 			printf ("%s\n", ret);
 			free (ret);
@@ -128,7 +128,7 @@ int test_swift_main(int argc, char **argv) {
 		for (i=0; swift_tests[i].sym; i++) {
 			Test *test = &swift_tests[i];
 			printf ("[>>] %s\n", test->sym);
-			ret = libdemangle_swift (test->sym, 0);
+			ret = ldmg_swift (test->sym);
 			if (ret) {
 				if (test->dem && !strcmp (ret, test->dem)) {
 					printf (Color_GREEN"[OK]"Color_RESET"  %s\n", ret);
