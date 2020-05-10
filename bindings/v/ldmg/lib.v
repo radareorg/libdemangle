@@ -1,8 +1,8 @@
 module ldmg
 
-#flag -I/Users/pancake/prg/libdemangle/src
+#flag -I../../src
 #flag `pkg-config --cflags --libs r_util`
-#flag /Users/pancake/prg/libdemangle/src/libldmg.a
+#flag ../../src/libldmg.a
 
 #include <ldmg.h>
 
