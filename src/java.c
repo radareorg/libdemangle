@@ -6,14 +6,13 @@
 R_API char *r_bin_demangle_java(const char *str) {
 	const char *w = NULL;
 	int is_array = 0;
-	const char *ptr;
 	int is_ret = 0;
 	int wlen = 0;
 	RBuffer *buf;
 	int n = 0;
 	char *ret;
 
-	ptr = strchr (str, '(');
+	const char *ptr = strchr (str, '(');
 	if (!ptr) {
 		return NULL;
 	}
@@ -77,5 +76,3 @@ R_API char *r_bin_demangle_java(const char *str) {
 	r_buf_free (buf);
 	return ret;
 }
-
-
