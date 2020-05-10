@@ -2,6 +2,8 @@ AR_EXT=a
 SO_EXT=dylib
 RANLIB=ranlib
 
+LIBNAME=libdemangle
+
 RR=..
 include deps.mk
 SRC=
@@ -20,10 +22,10 @@ SRC+=cxx/rust-demangle.c
 
 OBJ=$(subst .c,.o,$(SRC))
 
-all: libdemangle.$(SO_EXT) libdemangle.$(AR_EXT)
-#	rm libdemangle.$(SO_EXT)
-	#$(CC) -g -DHAS_MAIN=0 -I../../include swift-sd.c -L../../util -lr_util
-	#./a.out
+all: libdemangle.$(SO_EXT) libdemangle.$(AR_EXT) ldmg
+
+ldmg: $(OBJ) main.o
+	$(CC) -o ldmg $(CFLAGS) $(LDFLAGS) main.o libdemangle.$(AR_EXT)
 
 libdemangle.$(SO_EXT): $(OBJ)
 	$(CC) -shared -o libdemangle.$(SO_EXT) $(OBJ) $(LDFLAGS)

@@ -119,7 +119,7 @@ static const char *resolve(struct Type *t, const char *foo, const char **bar) {
 
 static int have_swift_demangle = -1;
 
-static char *swift_demangle_cmd(const char *s) {
+R_API char *libdemangle_swift_shell(const char *s) {
 	/* XXX: command injection issue here */
 	static char *swift_demangle = NULL;
 	if (have_swift_demangle == -1) {
@@ -158,7 +158,7 @@ static char *swift_demangle_cmd(const char *s) {
 	return NULL;
 }
 
-char *libdemangle_swift(const char *s, bool syscmd) {
+char *libdemangle_swift(const char *s) {
 #define STRCAT_BOUNDS(x) if (((x) + 2 + strlen (out)) > sizeof (out)) break;
 	char out[1024];
 	int i, len, is_generic = 0;
@@ -192,12 +192,6 @@ char *libdemangle_swift(const char *s, bool syscmd) {
 
 	if (strchr (s, '\'') || strchr (s, ' ')) {
 		return NULL;
-	}
-	if (syscmd) {
-		char *res = swift_demangle_cmd (s);
-		if (res) {
-			return res;
-		}
 	}
 
 	out[0] = 0;
@@ -579,8 +573,3 @@ char *libdemangle_swift(const char *s, bool syscmd) {
 	return NULL;
 }
 #define MAXMAIN
-
-
-char *swift(const char *input) {
-	return libdemangle_swift (input, 0);
-}

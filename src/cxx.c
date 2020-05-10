@@ -3,7 +3,7 @@
 #include <libdemangle.h>
 #include "./cxx/demangle.h"
 
-static inline bool is_cxx_symbol (const char *name) {
+R_API bool libdemangle_is_cxx(const char *name) {
 	r_return_val_if_fail (name, false);
 	if (!strncmp (name, "_Z", 2)) {
 		return true;
@@ -14,22 +14,8 @@ static inline bool is_cxx_symbol (const char *name) {
 	return false;
 }
 
-// TODO: deprecate
-#if 0
-R_API bool r_bin_is_cxx (RBinFile *binfile) {
-	RListIter *iter;
-	RBinImport *import;
-	RBinObject *o = binfile->o;
-	r_list_foreach (o->imports, iter, import) {
-		if (is_cxx_symbol (import->name)) {
-			return true;
-		}
-	}
-	return false;
-}
-#endif
 
-R_API char *libdemangle_cxx(const char *str, ut64 vaddr) {
+R_API char *libdemangle_cxx(const char *str) {
 	// DMGL_TYPES | DMGL_PARAMS | DMGL_ANSI | DMGL_VERBOSE
 	// | DMGL_RET_POSTFIX | DMGL_TYPES;
 	int i;

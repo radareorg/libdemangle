@@ -3,7 +3,7 @@
 #include <libdemangle.h>
 
 // http://code.google.com/p/smali/wiki/TypesMethodsAndFields
-char *r_bin_demangle_java(const char *str) {
+char *libdemangle_java(const char *str) {
 	const char *w = NULL;
 	int is_array = 0;
 	int is_ret = 0;

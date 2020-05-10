@@ -4,4 +4,6 @@ AUTHOR pancake ; pancake@nopcode.org
 
 ARG_WITHOUT WITH_GPL gpl do not build GPL code (binutils code) ;
 
+PKGCFG RUTIL_CFLAGS RUTIL_LDFLAGS r_util
+
 SUBDIRS ./config.mk ;
