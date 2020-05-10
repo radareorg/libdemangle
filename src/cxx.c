@@ -15,7 +15,6 @@ R_API bool ldmg_is_cxx(const char *name) {
 	return false;
 }
 
-
 R_API char *ldmg_cxx(const char *str) {
 	// DMGL_TYPES | DMGL_PARAMS | DMGL_ANSI | DMGL_VERBOSE
 	// | DMGL_RET_POSTFIX | DMGL_TYPES;
