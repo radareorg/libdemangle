@@ -1,9 +1,10 @@
+/* ldmg - LGPL - Copyright 2018-2020 - pancake */
 /* radare - LGPL - Copyright 2013-2018 - pancake */
 
-#include <libdemangle.h>
+#include <ldmg.h>
 #include "./cxx/demangle.h"
 
-R_API bool libdemangle_is_cxx(const char *name) {
+R_API bool ldmg_is_cxx(const char *name) {
 	r_return_val_if_fail (name, false);
 	if (!strncmp (name, "_Z", 2)) {
 		return true;
@@ -15,7 +16,7 @@ R_API bool libdemangle_is_cxx(const char *name) {
 }
 
 
-R_API char *libdemangle_cxx(const char *str) {
+R_API char *ldmg_cxx(const char *str) {
 	// DMGL_TYPES | DMGL_PARAMS | DMGL_ANSI | DMGL_VERBOSE
 	// | DMGL_RET_POSTFIX | DMGL_TYPES;
 	int i;

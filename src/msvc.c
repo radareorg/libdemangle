@@ -1,10 +1,10 @@
-/* libdemangle - LGPL - Copyright 2020 - inisider */
+/* ldmg - LGPL - Copyright 2020 - pancake */
 /* radare - LGPL - Copyright 2015-2018 - inisider */
 
-#include <libdemangle.h>
+#include <ldmg.h>
 #include "./msvc_demangler.h"
 
-R_API char *libdemangle_msvc(const char *str) {
+R_API char *ldmg_msvc(const char *str) {
 	char *out = NULL;
 	SDemangler *mangler = 0;
 

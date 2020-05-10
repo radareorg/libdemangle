@@ -1,10 +1,12 @@
-libdemangle
-===========
+LDMG
+====
+
+Formerly /lib-de-man-gle/
 
 Author
 ------
 
---pancake 2018
+--pancake 2018-2020
 
 
 Description

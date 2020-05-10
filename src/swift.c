@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include <libdemangle.h>
+#include <ldmg.h>
 #include <stdlib.h>
 //#include <r_cons.h>
 
@@ -119,7 +119,7 @@ static const char *resolve(struct Type *t, const char *foo, const char **bar) {
 
 static int have_swift_demangle = -1;
 
-R_API char *libdemangle_swift_shell(const char *s) {
+R_API char *ldmg_swift_shell(const char *s) {
 	/* XXX: command injection issue here */
 	static char *swift_demangle = NULL;
 	if (have_swift_demangle == -1) {
@@ -158,7 +158,7 @@ R_API char *libdemangle_swift_shell(const char *s) {
 	return NULL;
 }
 
-char *libdemangle_swift(const char *s) {
+char *ldmg_swift(const char *s) {
 #define STRCAT_BOUNDS(x) if (((x) + 2 + strlen (out)) > sizeof (out)) break;
 	char out[1024];
 	int i, len, is_generic = 0;

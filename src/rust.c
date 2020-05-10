@@ -1,7 +1,7 @@
-/* libdemangle - LGPL - Copyright 2020 - pancake */
+/* ldmg - LGPL - Copyright 2020 - pancake */
 /* radare - LGPL - Copyright 2011-2018 - pancake */
 
-#include <libdemangle.h>
+#include <ldmg.h>
 
 #define RS(from, to) (replace_seq ((const char **)&in, &out, (const char *)(from), to))
 
@@ -20,11 +20,11 @@ static bool replace_seq (const char **in, char **out, const char *seq, char valu
 	return true;
 }
 
-R_API char *libdemangle_rust(const char *sym, ut64 vaddr) {
+R_API char *ldmg_rust(const char *sym) {
 	int len;
 	char *str, *out, *in;
 
-	str = libdemangle_cxx (sym, vaddr);
+	str = ldmg_cxx (sym);
 	
 	if (!str) {
 		return str;

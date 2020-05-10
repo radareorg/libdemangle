@@ -1,4 +1,6 @@
-#include <libdemangle.h>
+/* ldmg - LGPL - Copyright 2020 - pancake */
+
+#include <ldmg.h>
 
 int main(int argc, const char **argv) {
 	if (argc < 3) {
@@ -6,11 +8,14 @@ int main(int argc, const char **argv) {
 		eprintf ("Languages: cxx, swift, rust, java, objc\n");
 		return 1;
 	}
-	Demangle dt = libdemangle_select (argv[1]);
+	LdmgCall dt = ldmg_select (argv[1]);
 	if (dt) {
-		char *r = dt (argv[1]);
-		eprintf ("%s\n", r);
-		free (r);
+		char *r = dt (argv[2]);
+		if (r) {
+			eprintf ("%s\n", r);
+			free (r);
+			return 0;
+		}
 	}
-	return 0;
+	return 1;
 }
