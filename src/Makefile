@@ -2,7 +2,7 @@ AR_EXT=a
 SO_EXT=dylib
 RANLIB=ranlib
 
-LIBNAME=libdemangle
+LIBNAME=libldmg
 
 RR=..
 include deps.mk
@@ -22,14 +22,14 @@ SRC+=cxx/rust-demangle.c
 
 OBJ=$(subst .c,.o,$(SRC))
 
-all: libdemangle.$(SO_EXT) libdemangle.$(AR_EXT) ldmg
+all: libldmg.$(SO_EXT) libldmg.$(AR_EXT) ldmg
 
 ldmg: $(OBJ) main.o
-	$(CC) -o ldmg $(CFLAGS) $(LDFLAGS) main.o libdemangle.$(AR_EXT)
+	$(CC) -o ldmg $(CFLAGS) $(LDFLAGS) main.o libldmg.$(AR_EXT)
 
-libdemangle.$(SO_EXT): $(OBJ)
-	$(CC) -shared -o libdemangle.$(SO_EXT) $(OBJ) $(LDFLAGS)
+libldmg.$(SO_EXT): $(OBJ)
+	$(CC) -shared -o libldmg.$(SO_EXT) $(OBJ) $(LDFLAGS)
 
-libdemangle.$(AR_EXT): $(OBJ)
-	ar -r libdemangle.$(AR_EXT) $(OBJ)
-	$(RANLIB) libdemangle.$(AR_EXT)
+libldmg.$(AR_EXT): $(OBJ)
+	ar -r libldmg.$(AR_EXT) $(OBJ)
+	$(RANLIB) libldmg.$(AR_EXT)
