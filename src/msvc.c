@@ -3,7 +3,7 @@
 #include <libdemangle.h>
 #include "./demangler.h"
 
-R_API char *r_bin_demangle_msvc(const char *str) {
+R_API char *libdemangle_msvc(const char *str) {
 	char *out = NULL;
 	SDemangler *mangler = 0;
 
