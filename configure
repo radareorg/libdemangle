@@ -91,7 +91,7 @@ create_environ() {
 : ${DATADIR:="${SPREFIX}/share"}
 : ${INFODIR:="${DATADIR}/info"}
 : ${MANDIR:="${DATADIR}/man"}
-: ${DOCDIR:="${DATADIR}/doc/libdemangle"}
+: ${DOCDIR:="${DATADIR}/doc/ldmg"}
 : ${LOCALSTATEDIR:="${SPREFIX}/var"}
 for A in `echo ${PATH} | sed -e 's,:, ,g'` ; do
   [ -e "$A"/ginstall ] && : ${INSTALL:="$A"/ginstall} && break
@@ -104,12 +104,12 @@ done
 : ${INSTALL_PROGRAM_STRIP:=${INSTALL} -m 755 -s}
 : ${INSTALL_MAN:=${INSTALL} -m 444}
 : ${INSTALL_LIB:=${INSTALL} -m 755 -c}
- PKGNAME='libdemangle' ; VERSION='0.1.0' ; VERSION_MAJOR=0; VERSION_MINOR=1; VERSION_PATCH=0; VERSION_NUMBER=00100; AUTHOR_MAIL="pancake@nopcode.org" ; AUTHOR_NAME="pancake" ; AUTHOR="pancake <pancake@nopcode.org>" ;
+ PKGNAME='ldmg' ; VERSION='0.1.0' ; VERSION_MAJOR=0; VERSION_MINOR=1; VERSION_PATCH=0; VERSION_NUMBER=00100; AUTHOR_MAIL="pancake@nopcode.org" ; AUTHOR_NAME="pancake" ; AUTHOR="pancake <pancake@nopcode.org>" ;
 }
 
 show_usage() {
 cat <<EOF2
-'configure' configures libdemangle-0.1.0 to adapt to many kinds of systems.
+'configure' configures ldmg-0.1.0 to adapt to many kinds of systems.
 
 Usage: ./configure [OPTION]... [VAR=VALUE]...
 
@@ -131,7 +131,7 @@ Installation directories:
 Fine tuning of the installation directories:
   --bindir=DIR           user executables [EPREFIX/bin]
   --datadir=DIR          read-only architecture-independent data [PREFIX/share]
-  --docdir=DIR           documentation directory [DATADIR/doc/libdemangle]
+  --docdir=DIR           documentation directory [DATADIR/doc/ldmg]
   --includedir=DIR       C header files [PREFIX/include]
   --infodir=DIR          info documentation [DATADIR/info]
   --libexecdir=DIR       program executables [EPREFIX/libexec]
@@ -165,7 +165,7 @@ take_environ() {
 }
 
 show_version() {
-echo "libdemangle-0.1.0 configuration script done with acr v1.9.0.
+echo "ldmg-0.1.0 configuration script done with acr v1.9.0.
 The 'Free Software Foundation' message is only for autodetection.
 Originally written by pancake <nopcode.org>."
 exit 0
@@ -188,7 +188,7 @@ case $flag in
 -V|-version|--version)
 	show_version ; ;;
 -r|--r|--report)
-echo "PKGNAME:   libdemangle"
+echo "PKGNAME:   ldmg"
 echo "VERSION:   0.1.0"
 echo "PKG-CONFIG:  r_util"
 echo "FLAGS:     --without-gpl"

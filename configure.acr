@@ -1,4 +1,4 @@
-PKGNAME libdemangle
+PKGNAME ldmg
 VERSION 0.1.0
 AUTHOR pancake ; pancake@nopcode.org
 
