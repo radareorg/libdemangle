@@ -1,0 +1,2 @@
+void mangle_parse() {
+}

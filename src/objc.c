@@ -1,9 +1,8 @@
 /* radare - LGPL - Copyright 2012-2015 - pancake */
 
-#include <r_bin.h>
-#include "../i/private.h"
+#include <libdemangle.h>
 
-R_API char *r_bin_demangle_objc(RBinFile *binfile, const char *sym) {
+R_API char *r_bin_demangle_objc(const char *sym) {
 	char *ret = NULL;
 	char *clas = NULL;
 	char *name = NULL;
@@ -14,24 +13,30 @@ R_API char *r_bin_demangle_objc(RBinFile *binfile, const char *sym) {
 	if (!sym) {
 		return NULL;
 	}
+#if 0
 	if (binfile && binfile->o && binfile->o->classes) {
 		binfile = NULL;
 	}
+#endif
 	/* classes */
 	if (!strncmp (sym, "_OBJC_Class_", 12)) {
 		ret = r_str_newf ("class %s", sym + 12);
+#if 0
 		if (binfile) {
 			r_bin_class_new (binfile, sym + 12,
 				NULL, R_BIN_CLASS_PUBLIC);
 		}
+#endif
 		return ret;
 	}
 	if (!strncmp (sym, "_OBJC_CLASS_$_", 14)) {
 		ret = r_str_newf ("class %s", sym + 14);
+#if 0
 		if (binfile) {
 			r_bin_class_new (binfile, sym + 14,
 				NULL, R_BIN_CLASS_PUBLIC);
 		}
+#endif
 		return ret;
 	}
 	/* fields */
@@ -46,9 +51,11 @@ R_API char *r_bin_demangle_objc(RBinFile *binfile, const char *sym) {
 		} else {
 			name = NULL;
 		}
+#if 0
 		if (binfile) {
 			r_bin_class_add_field (binfile, clas, name);
 		}
+#endif
 	}
 	/* methods */
 	if (sym && sym[0] && sym[1] == '[') { // apple style
@@ -130,9 +137,11 @@ R_API char *r_bin_demangle_objc(RBinFile *binfile, const char *sym) {
 			}
 			if (type && name && *name) {
 				ret = r_str_newf ("%s int %s::%s(%s)", type, clas, name, args);
+#if 0
 				if (binfile) {
 					r_bin_class_add_method (binfile, clas, name, nargs);
 				}
+#endif
 			}
 		}
 	}

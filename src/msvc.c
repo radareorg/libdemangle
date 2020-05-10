@@ -1,6 +1,6 @@
 /* radare - LGPL - Copyright 2015-2018 - inisider */
 
-#include <r_bin.h>
+#include <libdemangle.h>
 #include "./demangler.h"
 
 R_API char *r_bin_demangle_msvc(const char *str) {

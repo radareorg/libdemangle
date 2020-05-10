@@ -1,7 +1,6 @@
 /* radare - LGPL - Copyright 2013-2018 - pancake */
 
-#include <r_bin.h>
-#include "../i/private.h"
+#include <libdemangle.h>
 #include "./cxx/demangle.h"
 
 static inline bool is_cxx_symbol (const char *name) {
@@ -16,6 +15,7 @@ static inline bool is_cxx_symbol (const char *name) {
 }
 
 // TODO: deprecate
+#if 0
 R_API bool r_bin_is_cxx (RBinFile *binfile) {
 	RListIter *iter;
 	RBinImport *import;
@@ -27,8 +27,9 @@ R_API bool r_bin_is_cxx (RBinFile *binfile) {
 	}
 	return false;
 }
+#endif
 
-R_API char *r_bin_demangle_cxx(RBinFile *binfile, const char *str, ut64 vaddr) {
+R_API char *libdemangle_cxx(const char *str, ut64 vaddr) {
 	// DMGL_TYPES | DMGL_PARAMS | DMGL_ANSI | DMGL_VERBOSE
 	// | DMGL_RET_POSTFIX | DMGL_TYPES;
 	int i;
@@ -84,12 +85,14 @@ R_API char *r_bin_demangle_cxx(RBinFile *binfile, const char *str, ut64 vaddr) {
 			}
 			if (nerd && *nerd) {
 				*nerd = 0;
+#if 0
 				if (binfile) {
 					RBinSymbol *sym = r_bin_class_add_method (binfile, out, nerd + 2, 0);
 					if (sym) {
 						sym->vaddr = vaddr;
 					}
 				}
+#endif
 				*nerd = ':';
 			}
 		}

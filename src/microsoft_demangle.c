@@ -2,7 +2,8 @@
 
 #include "microsoft_demangle.h"
 #include <ctype.h>
-#include <r_cons.h>
+#include <libdemangle.h>
+//#include <r_cons.h>
 
 #define _R_LIST_C
 #include <r_list.h>

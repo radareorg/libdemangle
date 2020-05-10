@@ -1,9 +1,9 @@
 /* radare - LGPL - Copyright 2011-2018 - pancake */
 
-#include <r_bin.h>
+#include <libdemangle.h>
 
 // http://code.google.com/p/smali/wiki/TypesMethodsAndFields
-R_API char *r_bin_demangle_java(const char *str) {
+char *r_bin_demangle_java(const char *str) {
 	const char *w = NULL;
 	int is_array = 0;
 	int is_ret = 0;
@@ -35,7 +35,7 @@ R_API char *r_bin_demangle_java(const char *str) {
 			ptr = strchr (str, ';');
 			if (ptr) {
 				w = str;
-				wlen = (int)(size_t)(ptr-str);
+				wlen = (int)(size_t)(ptr - str);
 			}
 			str = ptr;
 			break;

@@ -1,6 +1,6 @@
 /* radare - LGPL - Copyright 2011-2018 - pancake */
 
-#include <r_bin.h>
+#include <libdemangle.h>
 
 #define RS(from, to) (replace_seq ((const char **)&in, &out, (const char *)(from), to))
 
@@ -19,11 +19,11 @@ static bool replace_seq (const char **in, char **out, const char *seq, char valu
 	return true;
 }
 
-R_API char *r_bin_demangle_rust (RBinFile *binfile, const char *sym, ut64 vaddr) {
+R_API char *r_bin_demangle_rust (const char *sym, ut64 vaddr) {
 	int len;
 	char *str, *out, *in;
 
-	str = r_bin_demangle_cxx (binfile, sym, vaddr);
+	str = libdemangle_cxx (sym, vaddr);
 	
 	if (!str) {
 		return str;

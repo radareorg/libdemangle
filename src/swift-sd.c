@@ -131,7 +131,9 @@ static char *swift_demangle_cmd(const char *s) {
 				if (xcrun) {
 					if (strcmp (xcrun, "xcrun")) {
 						free (swift_demangle);
-						swift_demangle = r_str_newf ("%s swift-demangle", xcrun);
+						size_t len = strlen (xcrun) + 1;
+						swift_demangle = malloc (len);
+						snprintf (swift_demangle, len, "%s swift-demangle", xcrun);
 						have_swift_demangle = 1;
 					}
 					free (xcrun);
@@ -145,8 +147,7 @@ static char *swift_demangle_cmd(const char *s) {
 			return NULL;
 		}
 		//char *res = r_sys_cmd_strf ("%s -compact -simplified '%s'",
-		char *res = r_sys_cmd_strf ("%s -compact '%s'",
-			swift_demangle, s);
+		char *res = r_sys_cmd_strf ("%s -compact '%s'", swift_demangle, s);
 		if (res && !*res) {
 			free (res);
 			res = NULL;
