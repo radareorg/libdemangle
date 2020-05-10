@@ -1,3 +1,4 @@
+/* libdemangle - LGPL - Copyright 2020 - pancake */
 /* radare - LGPL - Copyright 2011-2018 - pancake */
 
 #include <libdemangle.h>
@@ -19,7 +20,7 @@ static bool replace_seq (const char **in, char **out, const char *seq, char valu
 	return true;
 }
 
-R_API char *r_bin_demangle_rust (const char *sym, ut64 vaddr) {
+R_API char *libdemangle_rust(const char *sym, ut64 vaddr) {
 	int len;
 	char *str, *out, *in;
 

@@ -16,5 +16,6 @@
 
 char *libdemangle_swift(const char *s, bool syscmd);
 char *libdemangle_msvc(const char *str);
+char *libdemangle_cxx(const char *str, ut64 vaddr);
 
 #endif

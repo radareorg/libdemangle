@@ -6,4 +6,4 @@ LDFLAGS+=-rpath ../src
 
 all:
 	$(CC) $(CFLAGS) $(LDFLAGS) test*.c -o test
-	DYLD_LIBRARY_PATH=../src ./test
+	./test

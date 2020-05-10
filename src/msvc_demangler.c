@@ -1,6 +1,6 @@
 /* radare - LGPL - Copyright 2015 - inisider */
 
-#include "demangler.h"
+#include "msvc_demangler.h"
 #include <stdlib.h>
 
 #include <r_types.h> // eprintf()
