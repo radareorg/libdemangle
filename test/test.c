@@ -38,6 +38,12 @@ void test_msvc(void) {
 	/* nothing */
 }
 
+void test_cxx2(void) {
+/*
+_AddColor__10ZafDisplayUcUcUcUcUc
+*/
+}
+
 void test_cxx(void) {
 #if 0
 __ZTIN6json1110JsonDoubleE
