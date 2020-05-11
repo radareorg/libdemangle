@@ -7,15 +7,6 @@
 #include <stdbool.h>
 #include <ldmg.h>
 #include <stdlib.h>
-//#include <r_cons.h>
-
-#ifndef HAS_MAIN
-#define HAS_MAIN 0
-#endif
-
-#define IFDBG if(0)
-
-// $ echo "..." | xcrun swift-demangle
 
 struct Type {
 	const char *code;
@@ -119,6 +110,24 @@ static const char *resolve(struct Type *t, const char *foo, const char **bar) {
 
 static int have_swift_demangle = -1;
 
+R_API char *ldmg_swift_dylib(const char *s) {
+#if __UNIX__
+	static bool haveSwiftCore = false;
+	static char *(*swift_demangle)(const char *sym, int symlen, void *out, int *outlen, int flags) = NULL;
+	if (!haveSwiftCore) {
+		void *lib = r_lib_dl_open ("/usr/lib/swift/libswiftCore.dylib");
+		if (lib) {
+			swift_demangle = r_lib_dl_sym (lib, "swift_demangle");
+		}
+		haveSwiftCore = true;
+	}
+	if (swift_demangle) {
+		return swift_demangle (s, strlen (s), NULL, NULL, 0);
+	}
+#endif
+	return NULL;
+}
+
 R_API char *ldmg_swift_shell(const char *s) {
 	/* XXX: command injection issue here */
 	static char *swift_demangle = NULL;
@@ -173,7 +182,10 @@ char *ldmg_swift(const char *s) {
 	}
 
 	if (*s != 'T' && strncmp (s, "_T", 2) && strncmp (s, "__T", 3)) {
-		return NULL;
+		// swift>4
+		if (strncmp (s, "$s", 2)) {
+			return NULL;
+		}
 	}
 
 	if (!strncmp (s, "__", 2)) {
@@ -486,6 +498,10 @@ char *ldmg_swift(const char *s) {
 						retmode = 1;
 						len++;
 					}
+					if (len < 0 || len > 256) {
+						// invalid length
+						break;
+					}
 					if (len <= (q_end-q)  && q[len]) {
 						const char *s = getstring (q, len);
 						if (s && *s) {
@@ -537,12 +553,11 @@ char *ldmg_swift(const char *s) {
 					if (n) {
 						q = n + 1;
 					} else {
-						n = strstr (q, "_");
-						if (n) {
-							q = n + 1;
-						} else {
+						n = strchr (q, '_');
+						if (!n) {
 							break;
 						}
+						q = n + 1;
 					}
 				}
 			}

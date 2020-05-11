@@ -32,6 +32,7 @@ const char *ldmg_version;
 // demanglers //
 char *ldmg_swift(const char *s);
 char *ldmg_swift_shell(const char *s);
+char *ldmg_swift_dylib(const char *s);
 char *ldmg_msvc(const char *str);
 char *ldmg_rust(const char *str);
 char *ldmg_objc(const char *str);
