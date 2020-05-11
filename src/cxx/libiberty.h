@@ -333,7 +333,11 @@ extern unsigned int xcrc32 (const unsigned char *, int, unsigned int);
    as new/delete and new[]/delete[].  */
 
 /* Scalar allocators.  */
-#ifdef _MSC_VER
+#define ISUPPER isupper
+#define ISDIGIT isdigit
+#define ISXDIGIT isxdigit
+#define ISPRINT isprint
+#if 1
 #include <stdlib.h>
 #define xmalloc malloc
 #define xcalloc calloc

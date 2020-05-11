@@ -19,6 +19,7 @@ SRC+=rust.c
 SRC+=swift.c
 SRC+=cxx/cp-demangle.c
 SRC+=cxx/rust-demangle.c
+SRC+=cxx/d-demangle.c
 
 OBJ=$(subst .c,.o,$(SRC))
 
