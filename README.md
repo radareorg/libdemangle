@@ -1,5 +1,5 @@
-LDMG
-====
+libdemangle
+===========
 
 Formerly /lib-de-man-gle/
 
